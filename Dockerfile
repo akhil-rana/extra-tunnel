@@ -8,4 +8,7 @@ COPY . .
 RUN npm install
 
 EXPOSE 7000
+
+CMD ["nginx", "-c", "/data/conf/nginx.conf"]
+
 CMD node ./
