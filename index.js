@@ -216,11 +216,12 @@ function Tunnel(px, o) {
   function onSocket(id, buf) {
     // a. notify connection
     const soc = sockets.get(id);
+    console.log(channels);
+
     if (!channels.has('/')) return `/ has no server`;
     soc.removeAllListeners('data');
     channelWrite('/', 'c+', 0, id);
     channelWrite('/', 'd+', 0, id, buf);
-    // console.log(channels);
     // b. closed? delete and notify if exists
     soc.on('close', () => {
       if (sockets.delete(id)) channelWrite('/', 'c-', 0, id);
