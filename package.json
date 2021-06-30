@@ -31,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/nodef/extra-tunnel/issues"
   },
-  "homepage": "https://github.com/nodef/extra-tunnel#readme"
+  "homepage": "https://github.com/nodef/extra-tunnel#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
 }
