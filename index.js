@@ -216,12 +216,11 @@ function Tunnel(px, o) {
   function onSocket(id, buf) {
     // a. notify connection
     const soc = sockets.get(id);
-    // console.log(channels);
-    // if (!channels.has('/')) return `/ has no server`;
+    if (!channels.has('/')) return `/ has no server`;
     soc.removeAllListeners('data');
     channelWrite('/', 'c+', 0, id);
     channelWrite('/', 'd+', 0, id, buf);
-    console.log(channels);
+    // console.log(channels);
     // b. closed? delete and notify if exists
     soc.on('close', () => {
       if (sockets.delete(id)) channelWrite('/', 'c-', 0, id);
@@ -267,8 +266,11 @@ function Tunnel(px, o) {
     soc.on('data', (buf) => {
       var err = null;
       const mth = buf.toString('utf8', 0, 4);
-      if (mth !== 'HEAD') err = onSocket(id, buf);
-      else {
+      if (mth !== 'HEAD') {
+        console.log(111);
+        err = onSocket(id, buf);
+      } else {
+        console.log(222);
         var req = httpParse(buf);
         var ath = req.headers['user-agent'] || '';
         if (ath.startsWith(USERAGENT_SERVER)) err = onServer(id, req);
