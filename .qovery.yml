@@ -1,0 +1,11 @@
+---
+application:
+  name: "extra-tunnel"
+  project: "Home-tunnel"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-extra-tunnel"
+  routes:
+  - application_name: "extra-tunnel"
+    paths:
+    - "/*"
