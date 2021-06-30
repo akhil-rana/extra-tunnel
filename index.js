@@ -124,7 +124,7 @@ function Tunnel(px, o) {
   // 1. setup defaults
   px = px || 'tunnel';
   o = o || {};
-  o.tunnel = o.tunnel || 'localhost:7000';
+  o.tunnel = o.tunnel || 'localhost:80';
   o.keys = o.keys || {};
   o.keys['/'] = o.keys['/'] || '';
   // 2. setup tunnel
@@ -268,10 +268,10 @@ function Tunnel(px, o) {
       var err = null;
       const mth = buf.toString('utf8', 0, 4);
       if (mth !== 'HEAD') {
-        console.log(111);
+        // console.log(111);
         err = onSocket(id, buf);
       } else {
-        console.log(222);
+        // console.log(222);
         var req = httpParse(buf);
         var ath = req.headers['user-agent'] || '';
         if (ath.startsWith(USERAGENT_SERVER)) err = onServer(id, req);
@@ -288,7 +288,7 @@ function Server(px, o) {
   // 1. setup defaults
   px = px || 'server';
   o = o || {};
-  o.tunnel = o.tunnel || 'localhost:7000';
+  o.tunnel = o.tunnel || 'localhost:80';
   o.server = o.server || 'localhost:7001';
   o.channel = o.channel || '/';
   o.key = o.key || '';
@@ -385,7 +385,7 @@ function Client(px, o) {
   // 1. setup defaults
   px = px || 'client';
   o = o || {};
-  o.tunnel = o.tunnel || 'localhost:7000';
+  o.tunnel = o.tunnel || 'localhost:80';
   o.client = o.client || 'localhost:7002';
   o.channel = o.channel || '/';
   o.token = o.token || '';
